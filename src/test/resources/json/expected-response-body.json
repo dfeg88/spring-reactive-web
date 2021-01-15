@@ -1,0 +1,46 @@
+{
+  "countriesWithMostBorders": [
+    {
+      "country": "Brazil",
+      "borders": 10
+    },
+    {
+      "country": "Austria",
+      "borders": 8
+    },
+    {
+      "country": "Algeria",
+      "borders": 7
+    },
+    {
+      "country": "Afghanistan",
+      "borders": 6
+    },
+    {
+      "country": "Burkina Faso",
+      "borders": 6
+    }
+  ],
+  "countriesWithHighestPopulation": [
+    {
+      "country": "Brazil",
+      "population": 206135893
+    },
+    {
+      "country": "Bangladesh",
+      "population": 161006790
+    },
+    {
+      "country": "Argentina",
+      "population": 43590400
+    },
+    {
+      "country": "Algeria",
+      "population": 40400000
+    },
+    {
+      "country": "Canada",
+      "population": 36155487
+    }
+  ]
+}

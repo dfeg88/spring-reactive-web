@@ -1,4 +1,4 @@
-package com.danielfegan.reactiveweb.core;
+package com.danielfegan.reactiveweb.core.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class BordersPerCountry {
-    private String name;
+    private String country;
     private Integer borders;
 }

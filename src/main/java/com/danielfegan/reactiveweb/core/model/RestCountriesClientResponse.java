@@ -1,4 +1,4 @@
-package com.danielfegan.reactiveweb.core;
+package com.danielfegan.reactiveweb.core.model;
 
 import lombok.Data;
 

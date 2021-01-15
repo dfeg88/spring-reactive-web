@@ -1,4 +1,4 @@
-package com.danielfegan.reactiveweb.core;
+package com.danielfegan.reactiveweb.core.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,4 +13,5 @@ import java.util.List;
 @Builder
 public class CountriesDataResponse {
     private List<BordersPerCountry> countriesWithMostBorders;
+    private List<CountryPopulation> countriesWithHighestPopulation;
 }

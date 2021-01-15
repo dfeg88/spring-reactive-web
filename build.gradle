@@ -40,6 +40,7 @@ dependencies {
 
 	testImplementation(
 		'org.springframework.boot:spring-boot-starter-test',
+		'org.springframework.cloud:spring-cloud-contract-wiremock',
 		'io.projectreactor:reactor-test'
 	)
 }

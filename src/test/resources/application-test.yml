@@ -1,0 +1,2 @@
+api:
+  rest-countries-base-url: http://localhost:${wiremock.server.port}/rest/v2

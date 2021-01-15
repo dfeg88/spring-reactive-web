@@ -1,5 +1,6 @@
 package com.danielfegan.reactiveweb.core;
 
+import com.danielfegan.reactiveweb.core.model.CountriesDataResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
