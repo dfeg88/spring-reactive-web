@@ -14,7 +14,12 @@ public class RestCountriesDataRepository implements CountriesDataRepository {
     private final WebClient webClient;
 
     @Override
-    public Flux<?> retrieveAll() {
-        return webClient.get().uri("/all").accept(APPLICATION_JSON).retrieve().bodyToFlux(Object.class);
+    public Flux<RestCountriesClientResponse> retrieveAll() {
+        return webClient
+            .get()
+            .uri("/all")
+            .accept(APPLICATION_JSON)
+            .retrieve()
+            .bodyToFlux(RestCountriesClientResponse.class);
     }
 }

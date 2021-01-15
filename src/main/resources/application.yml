@@ -1,2 +1,2 @@
 api:
-  rest-countries-base-url: https://restcountries.eu/rest/v2
+  rest-countries-base-url: http://restcountries.eu/rest/v2
