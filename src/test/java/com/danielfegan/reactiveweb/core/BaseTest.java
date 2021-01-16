@@ -16,8 +16,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import java.io.IOException;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.okJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
@@ -43,6 +45,9 @@ public class BaseTest {
     @Value("classpath:json/expected-response-body.json")
     protected Resource expectedResponseBody;
 
+    @Value("classpath:json/error-response-body.json")
+    protected Resource errorResponseBody;
+
     @Autowired
     protected WebTestClient webTestClient;
 
@@ -50,6 +55,11 @@ public class BaseTest {
     public void tearDown() {
         WireMock.reset();
     }
+
+    protected final Consumer<Integer> stubRestCountriesClientResponseWithErrorResponseStatus = status ->
+        stubFor(get(urlPathMatching("/rest/v2/all"))
+            .willReturn(aResponse().withStatus(status))
+        );
 
     protected void stubTheRestCountriesClientResponse() throws IOException {
         stubFor(get(urlPathMatching("/rest/v2/all"))

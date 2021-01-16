@@ -1,10 +1,13 @@
 package com.danielfegan.reactiveweb.core;
 
+import com.danielfegan.reactiveweb.core.exception.CountriesDataException;
 import com.danielfegan.reactiveweb.core.model.RestCountriesClientResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 
@@ -22,8 +25,10 @@ public class CountriesDataRepository {
             .uri("/all")
             .accept(APPLICATION_JSON)
             .retrieve()
+            .onStatus(HttpStatus::is4xxClientError, r -> Mono.error(new CountriesDataException("Received 4xx response", r.rawStatusCode())))
+            .onStatus(HttpStatus::is5xxServerError, r -> Mono.error(new CountriesDataException("Received 5xx server error response", r.rawStatusCode())))
             .bodyToFlux(RestCountriesClientResponse.class)
-            .cache(Duration.ofSeconds(10L))
+            .cache(Duration.ofHours(1L))
             .log();
     }
 }
