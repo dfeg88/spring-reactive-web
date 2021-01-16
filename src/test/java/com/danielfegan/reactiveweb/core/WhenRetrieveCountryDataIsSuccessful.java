@@ -11,8 +11,8 @@ import static wiremock.org.apache.commons.io.FileUtils.readFileToString;
 public class WhenRetrieveCountryDataIsSuccessful extends BaseTest {
 
     @BeforeAll
-    public void setup() throws IOException {
-        stubTheRestCountriesClientResponse();
+    public void setup() {
+        stubTheRestCountriesClientResponse.run();
     }
 
     @Test

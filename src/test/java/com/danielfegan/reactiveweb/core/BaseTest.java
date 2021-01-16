@@ -61,11 +61,15 @@ public class BaseTest {
             .willReturn(aResponse().withStatus(status))
         );
 
-    protected void stubTheRestCountriesClientResponse() throws IOException {
-        stubFor(get(urlPathMatching("/rest/v2/all"))
-            .willReturn(okJson(readFileToString(restCountriesResponse.getFile())))
-        );
-    }
+    protected Runnable stubTheRestCountriesClientResponse = () -> {
+        try {
+            stubFor(get(urlPathMatching("/rest/v2/all"))
+                .willReturn(okJson(readFileToString(restCountriesResponse.getFile())))
+            );
+        } catch (IOException ignored) {
+
+        }
+    };
 
     protected final Function<Integer, String> getEndpointUrl = port -> "http://localhost:" + port + "/v1/countries";
 
