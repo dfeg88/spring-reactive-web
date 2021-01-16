@@ -24,9 +24,9 @@ import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.okJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
+import static java.nio.file.Files.readString;
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
-import static wiremock.org.apache.commons.io.FileUtils.readFileToString;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
@@ -64,7 +64,7 @@ public class BaseTest {
     protected Runnable stubTheRestCountriesClientResponse = () -> {
         try {
             stubFor(get(urlPathMatching("/rest/v2/all"))
-                .willReturn(okJson(readFileToString(restCountriesResponse.getFile())))
+                .willReturn(okJson(readString(restCountriesResponse.getFile().toPath())))
             );
         } catch (IOException ignored) {
 
