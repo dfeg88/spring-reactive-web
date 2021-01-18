@@ -20,16 +20,6 @@ public class CountriesDataService {
 
     private final CountriesDataRepository countriesDataRepository;
 
-    public Mono<CountriesDataResponse> retrieveCountryData() {
-        return countriesDataRepository.retrieveAll()
-            .collectList()
-            .map(response -> CountriesDataResponse.builder()
-                .countriesWithMostBorders(getBordersPerCountries.apply(response))
-                .countriesWithHighestPopulation(getHighestPopulations.apply(response))
-                .build()
-            );
-    }
-
     private final Function<List<RestCountriesClientResponse>, List<CountryPopulation>> getHighestPopulations = r ->
         r.stream()
             .sorted(comparingInt(RestCountriesClientResponse::getPopulation).reversed())
@@ -43,4 +33,15 @@ public class CountriesDataService {
             .limit(5L)
             .map(bpc -> new BordersPerCountry(bpc.getName(), bpc.getBorders().size()))
             .collect(toList());
+
+    public Mono<CountriesDataResponse> retrieveCountryData() {
+        return countriesDataRepository.retrieveAll()
+            .collectList()
+            .map(response -> CountriesDataResponse.builder()
+                .countriesWithMostBorders(getBordersPerCountries.apply(response))
+                .countriesWithHighestPopulation(getHighestPopulations.apply(response))
+                .build()
+            );
+    }
+
 }
